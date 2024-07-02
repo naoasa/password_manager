@@ -27,10 +27,13 @@ elif [ "$choice" = "Get Password" ]; then
 	read get_service_name
 
 	## サービス名が保存されていた場合
-	if [ "$get_service_name" = "yahoo" ]; then
-		echo "サービス名:hoge"
-		echo "ユーザー名:fuga"
-		echo "パスワード:piyo"
+	# パスワード保管庫内からサービス名を元に検索し、文字列の:を改行に置換して整形
+	formatted_data=$(cat password_storage.txt | grep "^$get_service_name" | sed 's/:/\n/g')
+
+	if [ "$formatted_data" ]; then # データが存在するかの判定
+		echo "サービス名:$formatted_data" # 整形データの1行目を取得(予定)
+		echo "ユーザー名:$formatted_data" # 整形データの2行目を取得(予定)
+		echo "パスワード:$formatted_data" # 整形データの3行目を取得(予定)
 	## サービス名が保存されていなかった場合
 	else
 	## get_service_nameと保管庫txtから「"先頭〜":までの文字列を検索したものが不一致の場合
