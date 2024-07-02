@@ -28,12 +28,21 @@ elif [ "$choice" = "Get Password" ]; then
 
 	## サービス名が保存されていた場合
 	# パスワード保管庫内からサービス名を元に検索し、文字列の:を改行に置換して整形
-	formatted_data=$(cat password_storage.txt | grep "^$get_service_name" | sed 's/:/\n/g')
+	formatted_data="$(cat password_storage.txt | grep "^$get_service_name:" | sed 's/:/\n/g')"
+
+	### $formatted_dataの中身
+	## サービス名(1行目)
+	## ユーザー名(2行目)
+	## パスワード(3行目)
+
+	service_name=$(echo "$formatted_data" | sed -n 1p) # 整形データの1行目
+	user_name=$(echo "$formatted_data" | sed -n 2p) # 整形データの2行目
+	password=$(echo "$formatted_data" | sed -n 3p) # 整形データの3行目
 
 	if [ "$formatted_data" ]; then # データが存在するかの判定
-		echo "サービス名:$formatted_data" # 整形データの1行目を取得(予定)
-		echo "ユーザー名:$formatted_data" # 整形データの2行目を取得(予定)
-		echo "パスワード:$formatted_data" # 整形データの3行目を取得(予定)
+		echo "サービス名:$service_name"
+		echo "ユーザー名:$user_name"
+		echo "パスワード:$password"
 	## サービス名が保存されていなかった場合
 	else
 	## get_service_nameと保管庫txtから「"先頭〜":までの文字列を検索したものが不一致の場合
