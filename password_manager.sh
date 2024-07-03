@@ -2,6 +2,11 @@
 
 echo "パスワードマネージャーへようこそ！"
 
+# while文(入力値がExitではない間、ループ)
+while [ "$choice" != "Exit" ]
+
+do # ループ開始
+
 echo "次の選択肢から入力してください(Add Password/Get Password/Exit):"
 # 入力値の格納
 read choice
@@ -48,17 +53,13 @@ elif [ "$choice" = "Get Password" ]; then
 	## get_service_nameと保管庫txtから「"先頭〜":までの文字列を検索したものが不一致の場合
 		echo "そのサービスは登録されていません。"
 	fi
-else
+else # 例外(意図しない値が入力された場合)
 	# Add Password/Get Password/Exit 以外が入力された場合
 	echo "入力が間違えています。Add Password/Get Password/Exit から入力してください。"
 fi
 
-
-
-
+done # ループ終了(Exitが入力されたということ)
 
 # Exit が入力された場合
 echo "Thank you!"
 ## プログラムが終了
-
-
