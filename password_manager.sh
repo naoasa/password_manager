@@ -12,7 +12,10 @@ echo "次の選択肢から入力してください(Add Password/Get Password/Ex
 read choice
 
 # Add Password が入力された場合 => 入力値が"Add Password"と等しい
-if [ "$choice" = "Add Password" ]; then
+if [ "$choice" = "Exit" ]; then
+	: # 処理なし
+
+elif [ "$choice" = "Add Password" ]; then
 	# Add Password Menu
 	echo "サービス名を入力してください:" # サービス名の受け取り
 	read service_name
