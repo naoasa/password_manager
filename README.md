@@ -39,3 +39,24 @@ gpg: Go ahead and type your message ...
 ```console
 -> chmod u+x password_manager.sh
 ```
+
+## Mac OSでGnuPGのパスフレーズが入力できない場合
+
+1. `pinentry-mac`をインストール
+
+```console
+-> brew install pinentry-mac
+```
+
+2. 表示されたメッセージを参考に`~/.gnupg/gpg-agent.conf`ファイルに追記
+
+```console
+## ファイルの作成
+-> touch ~/.gnupg/gpg-agent.conf
+
+## ファイルへの追記
+echo "pinentry-program /opt/homebrew/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
+## GnuPGで利用するpinentry-macのパス(いる場所)を指定すること
+```
+
+以上の手順でGnuPGが利用できるようになる場合があります
