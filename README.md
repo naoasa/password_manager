@@ -55,7 +55,7 @@ gpg: Go ahead and type your message ...
 -> touch ~/.gnupg/gpg-agent.conf
 
 ## ファイルへの追記
-echo "pinentry-program /opt/homebrew/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
+-> echo "pinentry-program /opt/homebrew/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
 ## GnuPGで利用するpinentry-macのパス(いる場所)を指定すること
 ```
 
